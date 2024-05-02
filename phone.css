@@ -1,0 +1,6 @@
+
+    .container{
+       grid-template-columns: auto ;
+       background-color: black;
+   
+    }

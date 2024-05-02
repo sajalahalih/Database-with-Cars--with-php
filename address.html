@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+  
+<style>
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
+}
+/* .insert{
+    max-width: 300px;
+  background: #fff;
+  width: 800px;
+  padding: 25px 40px 10px 40px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+.search{
+    max-width: 300px;
+  background: #fff;
+  width: 800px;
+  padding: 25px 40px 10px 60px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+.update{
+    max-width: 300px;
+  background: #fff;
+  width: 800px;
+  padding: 25px 40px 10px 40px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+#searchDiv{
+    max-width: 310px;
+  background: #fff;
+  width: 800px;
+  padding: 25px 40px 10px 40px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+} */
+h3{
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+h1 {
+    text-align: center;
+    color: #333;
+    
+}
+
+h3 {
+    color: #666;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#searchDiv {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+}
+
+/* .main {
+    display: flex;
+    justify-content: space-between;
+} */
+
+.search, .insert {
+    width: 48%; /* Adjust the width based on your preference */
+}
+
+.insert {
+    margin-left: 20px; /* Add some spacing between the search and insert divs */
+}
+
+a {
+    display: block;
+    margin-top: 20px;
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2980b9;
+}
+
+
+.grid-container {
+  display: grid;
+  height: 400px;
+  align-content: center;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 30px;
+}
+
+</style>
+</head>
+
+
+
+<body>
+
+<h1>ADDRESS TABLE</h1>
+<div class="grid-container">
+<div class="search">
+<h3>Search</h3>
+<label>Address ID</label>
+<input type="text" id="carName">
+<br>
+<button id="searchButton">Search</button>
+<br><br>
+</div>
+
+<div class="insert">
+<h3>Insert</h3>
+<label> ID</label>
+<input type="text" id="first">
+<br>
+<label> building</label>
+<input type="text" id="building">
+<br>
+<label> street</label>
+<input type="text" id="street">
+<br>
+<label> city</label>
+<input type="text" id="city">
+<br>
+<label> country</label>
+<input type="text" id="country">
+<br>
+<button id="insertButton">Insert</button>
+</div>
+<div class="update">
+<h3>Update</h3>
+<label> ID</label>
+<input type="text" id="first">
+<br>
+<label> building</label>
+<input type="text" id="building">
+<br>
+<label> street</label>
+<input type="text" id="street">
+<br>
+<label> city</label>
+<input type="text" id="city">
+<br>
+<label> country</label>
+<input type="text" id="country">
+<br>
+<button id="updateButton">Insert</button>
+</div>
+
+<div id="searchDiv"></div>
+
+<br><br>
+</div>
+
+
+<script>
+$(document).ready(function(){
+    $.post("address.php", function(data, status){
+        $("#searchDiv").html(data);
+    });
+
+
+    $("#searchButton").click(function(){
+        $.post("addressSearch.php",
+        {
+            carName: $("#carName").val()
+        },
+
+        function(data,status){
+            $("#searchDiv").html(data);
+        });
+
+
+    });
+
+});
+
+
+</script>
+
+<br>
+<a href="lab10main.html">Back to HTML Page</a>
+
+</body>
+
+</html>
